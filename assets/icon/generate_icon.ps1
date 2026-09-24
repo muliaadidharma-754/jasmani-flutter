@@ -1,43 +1,36 @@
 Add-Type -AssemblyName System.Drawing
 
+# Ikon 1024x1024: tulisan "JAS" hitam + garis tebal di bawahnya,
+# latar gradasi biru muda -> tosca, full bleed (tanpa transparansi).
 $size = 1024
+$widthFrac = 0.78
 $bmp = New-Object System.Drawing.Bitmap $size, $size
 $g = [System.Drawing.Graphics]::FromImage($bmp)
-$g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
-$g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
-$g.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
+$g.SmoothingMode = 'AntiAlias'
 
-function HexColor($hex) {
-    $hex = $hex.TrimStart('#')
-    $r = [Convert]::ToInt32($hex.Substring(0,2), 16)
-    $gg = [Convert]::ToInt32($hex.Substring(2,2), 16)
-    $b = [Convert]::ToInt32($hex.Substring(4,2), 16)
-    return [System.Drawing.Color]::FromArgb(255, $r, $gg, $b)
-}
+$c1 = [System.Drawing.Color]::FromArgb(255,135,206,250)
+$c2 = [System.Drawing.Color]::FromArgb(255,0,201,190)
+$grad = New-Object System.Drawing.Drawing2D.LinearGradientBrush((New-Object System.Drawing.Point 0,0),(New-Object System.Drawing.Point $size,$size),$c1,$c2)
+$g.FillRectangle($grad,0,0,$size,$size)
 
-$amber = HexColor "FFB74D"
-$black = HexColor "141414"
-
-# Background: solid amber/kuning, full bleed (no transparency)
-$bgBrush = New-Object System.Drawing.SolidBrush($amber)
-$g.FillRectangle($bgBrush, 0, 0, $size, $size)
-
-# Bold "JAS" text, centered, black
-$fontFamily = New-Object System.Drawing.FontFamily("Arial")
-$font = New-Object System.Drawing.Font($fontFamily, 320, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
-$textBrush = New-Object System.Drawing.SolidBrush($black)
-
-$text = "JAS"
-$format = New-Object System.Drawing.StringFormat
-$format.Alignment = [System.Drawing.StringAlignment]::Center
-$format.LineAlignment = [System.Drawing.StringAlignment]::Center
-
-$rect = New-Object System.Drawing.RectangleF 0, 0, $size, $size
-$g.DrawString($text, $font, $textBrush, $rect, $format)
+$fam = New-Object System.Drawing.FontFamily("Arial Black")
+$path = New-Object System.Drawing.Drawing2D.GraphicsPath
+$path.AddString("JAS", $fam, 0, 1000, (New-Object System.Drawing.PointF 0,0), [System.Drawing.StringFormat]::GenericTypographic)
+$b = $path.GetBounds()
+$w = $size * $widthFrac
+$s = $w / $b.Width
+$t = $w * 0.1053     # tebal garis = tebal batang huruf
+$gap = $w * 0.0414
+$m = New-Object System.Drawing.Drawing2D.Matrix
+$m.Translate(-($b.X + $b.Width/2), -($b.Y + $b.Height/2))
+$m.Scale($s, $s, 'Append')
+$m.Translate($size/2, $size/2 - ($gap + $t)/2, 'Append')
+$path.Transform($m)
+$g.FillPath([System.Drawing.Brushes]::Black, $path)
+$nb = $path.GetBounds()
+$g.FillRectangle([System.Drawing.Brushes]::Black, $nb.X, $nb.Bottom + $gap, $nb.Width, $t)
 
 $outPath = "D:\jasmani_flutter\assets\icon\app_icon.png"
 $bmp.Save($outPath, [System.Drawing.Imaging.ImageFormat]::Png)
-
-$g.Dispose()
-$bmp.Dispose()
+$g.Dispose(); $bmp.Dispose()
 Write-Output "Saved: $outPath"
