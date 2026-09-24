@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../data/test_configs.dart';
 import '../theme/app_theme.dart';
 import 'bmi_screen.dart';
 import 'berat_screen.dart';
 import 'gender_select_screen.dart';
+import 'tracker_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 childAspectRatio: 1.1,
                 children: [
                   _DashboardTile(
-                    icon: Icons.timer,
+                    icon: 'assets/icons/ic_12menit.svg',
                     label: '12 Menit',
                     onTap: () => Navigator.push(
                       context,
@@ -63,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   _DashboardTile(
-                    icon: Icons.flag,
+                    icon: 'assets/icons/ic_3200.svg',
                     label: '3200 Meter',
                     onTap: () => Navigator.push(
                       context,
@@ -77,7 +80,15 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   _DashboardTile(
-                    icon: Icons.monitor_weight_outlined,
+                    icon: 'assets/icons/ic_lari.svg',
+                    label: 'Tracker Lari',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const TrackerScreen()),
+                    ),
+                  ),
+                  _DashboardTile(
+                    icon: 'assets/icons/ic_timbangan.svg',
                     label: 'Berat Ideal',
                     onTap: () => Navigator.push(
                       context,
@@ -85,7 +96,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   _DashboardTile(
-                    icon: Icons.straighten,
+                    icon: 'assets/icons/ic_bmi.svg',
+                    iconScale: 0.42,
                     label: 'BMI',
                     onTap: () => Navigator.push(
                       context,
@@ -103,43 +115,51 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _DashboardTile extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String label;
   final VoidCallback onTap;
+  final double iconScale;
 
   const _DashboardTile({
     required this.icon,
+    this.iconScale = 0.56,
     required this.label,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(22),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.surface,
+    return LayoutBuilder(
+      builder: (context, c) {
+        // Ikon memenuhi ~2/3 tile, tapi tetap menyisakan ruang untuk label.
+        final iconSize = (c.maxWidth * iconScale).clamp(0.0, c.maxHeight - 60);
+        return InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: AppColors.neonCyanDim),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: AppColors.amber, size: 40),
-            const SizedBox(height: 10),
-            Text(
-              label,
-              style: const TextStyle(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 0.5,
-              ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: AppColors.neonCyanDim),
             ),
-          ],
-        ),
-      ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(icon, width: iconSize, height: iconSize),
+                const SizedBox(height: 10),
+                Text(
+                  label,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

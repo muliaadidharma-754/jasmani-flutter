@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Lokasi dipakai untuk melacak rute, jarak, dan kecepatan lari Anda.</string>
 	<key>CFBundleDisplayName</key>
 	<string>JAS 2026</string>
 	<key>CFBundleExecutable</key>
