@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/run_history.dart';
 import '../theme/app_theme.dart';
 
@@ -15,8 +16,18 @@ class _RiwayatLariScreenState extends State<RiwayatLariScreen> {
   void _reload() => setState(() => _future = RunHistory.load());
 
   static const _bulan = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
-    'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'Mei',
+    'Jun',
+    'Jul',
+    'Agu',
+    'Sep',
+    'Okt',
+    'Nov',
+    'Des',
   ];
 
   String _tanggal(DateTime d) {
@@ -32,11 +43,13 @@ class _RiwayatLariScreenState extends State<RiwayatLariScreen> {
         content: Text('${r.jarakKm.toStringAsFixed(2)} km • ${r.durasi}'),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Batal')),
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Batal'),
+          ),
           TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Hapus')),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Hapus'),
+          ),
         ],
       ),
     );
@@ -61,8 +74,10 @@ class _RiwayatLariScreenState extends State<RiwayatLariScreen> {
             final list = snap.data!;
             if (list.isEmpty) {
               return const Center(
-                child: Text('Belum ada riwayat tersimpan',
-                    style: TextStyle(color: AppColors.textMuted)),
+                child: Text(
+                  'Belum ada riwayat tersimpan',
+                  style: TextStyle(color: AppColors.textMuted),
+                ),
               );
             }
             return ListView.separated(
@@ -84,25 +99,37 @@ class _RiwayatLariScreenState extends State<RiwayatLariScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(_tanggal(r.waktuMulai),
-                                style: const TextStyle(
-                                    color: AppColors.textMuted, fontSize: 12)),
+                            Text(
+                              _tanggal(r.waktuMulai),
+                              style: const TextStyle(
+                                color: AppColors.textMuted,
+                                fontSize: 12,
+                              ),
+                            ),
                             const SizedBox(height: 6),
-                            Text('${r.jarakKm.toStringAsFixed(2)} km',
-                                style: const TextStyle(
-                                    color: AppColors.neonCyan,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold)),
+                            Text(
+                              '${r.jarakKm.toStringAsFixed(2)} km',
+                              style: const TextStyle(
+                                color: AppColors.neonCyan,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text('Waktu ${r.durasi}  •  Pace ${r.pace}/km',
-                                style: const TextStyle(
-                                    color: AppColors.textPrimary)),
+                            Text(
+                              'Waktu ${r.durasi}  •  Pace ${r.pace}/km',
+                              style: const TextStyle(
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.delete_outline,
-                            color: AppColors.textMuted),
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: AppColors.textMuted,
+                        ),
                         onPressed: () => _hapus(r),
                       ),
                     ],

@@ -59,7 +59,7 @@ function Conv-Node($node, $sb, $defs) {
     }
 }
 
-foreach ($n in @('ic_12menit','ic_3200','ic_timbangan','ic_lari','ic_bmi')) {
+foreach ($n in @('ic_12menit','ic_3200','ic_timbangan','ic_lari','ic_bmi','ic_renang_dasar','ic_renmil')) {
     [xml]$x = Get-Content "$src\$n.xml" -Raw -Encoding UTF8
     $v = $x.DocumentElement
     $vw = $v.GetAttribute('viewportWidth', $ns); $vh = $v.GetAttribute('viewportHeight', $ns)

@@ -2757,4 +2757,3 @@ const Map<String, int> lariWanita3200 = {
   '30.58': -5,
   '30.59': -5,
 };
-

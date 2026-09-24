@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Satu sesi lari yang disimpan di riwayat.
@@ -19,16 +20,16 @@ class RunRecord {
   String get durasi => formatDurasi(durasiDetik);
 
   Map<String, dynamic> toJson() => {
-        'waktuMulai': waktuMulai.millisecondsSinceEpoch,
-        'jarakKm': jarakKm,
-        'durasiDetik': durasiDetik,
-      };
+    'waktuMulai': waktuMulai.millisecondsSinceEpoch,
+    'jarakKm': jarakKm,
+    'durasiDetik': durasiDetik,
+  };
 
   factory RunRecord.fromJson(Map<String, dynamic> j) => RunRecord(
-        waktuMulai: DateTime.fromMillisecondsSinceEpoch(j['waktuMulai'] as int),
-        jarakKm: (j['jarakKm'] as num).toDouble(),
-        durasiDetik: j['durasiDetik'] as int,
-      );
+    waktuMulai: DateTime.fromMillisecondsSinceEpoch(j['waktuMulai'] as int),
+    jarakKm: (j['jarakKm'] as num).toDouble(),
+    durasiDetik: j['durasiDetik'] as int,
+  );
 }
 
 String formatDurasi(int totalDetik) {

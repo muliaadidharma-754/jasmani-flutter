@@ -6,6 +6,8 @@ import '../theme/app_theme.dart';
 import 'bmi_screen.dart';
 import 'berat_screen.dart';
 import 'gender_select_screen.dart';
+import 'renang_screen.dart';
+import '../data/renang_logic.dart';
 import 'tracker_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -76,6 +78,28 @@ class HomeScreen extends StatelessWidget {
                           priaConfig: testPria3200,
                           wanitaConfig: testWanita3200,
                         ),
+                      ),
+                    ),
+                  ),
+                  _DashboardTile(
+                    icon: 'assets/icons/ic_renang_dasar.svg',
+                    label: 'Renang Dasar',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const RenangScreen(config: renangDasarConfig),
+                      ),
+                    ),
+                  ),
+                  _DashboardTile(
+                    icon: 'assets/icons/ic_renmil.svg',
+                    label: 'Renang Militer',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const RenangScreen(config: renmilConfig),
                       ),
                     ),
                   ),

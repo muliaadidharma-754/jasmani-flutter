@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../data/berat_ideal_table.dart';
 import '../theme/app_theme.dart';
 
@@ -107,19 +108,43 @@ class _BeratScreenState extends State<BeratScreen> {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
         child: Column(
           children: [
-            _tier('Luar Limit Atas', 'KEATAS dari ${llA1.toStringAsFixed(1)} kg'),
-            _tier('Limit Atas', '${lA1.toStringAsFixed(1)} - ${lA2.toStringAsFixed(1)} kg'),
-            _tier('Normal Atas', '${nA1.toStringAsFixed(1)} - ${nA2.toStringAsFixed(1)} kg'),
-            _tier('Harmonis Atas', '${hA1.toStringAsFixed(1)} - ${hA2.toStringAsFixed(1)} kg'),
+            _tier(
+              'Luar Limit Atas',
+              'KEATAS dari ${llA1.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Limit Atas',
+              '${lA1.toStringAsFixed(1)} - ${lA2.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Normal Atas',
+              '${nA1.toStringAsFixed(1)} - ${nA2.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Harmonis Atas',
+              '${hA1.toStringAsFixed(1)} - ${hA2.toStringAsFixed(1)} kg',
+            ),
             _tier(
               'IDEAL',
               '${ideB1.toStringAsFixed(1)} - ${ideA2.toStringAsFixed(1)} kg',
               highlight: true,
             ),
-            _tier('Harmonis Bawah', '${hB1.toStringAsFixed(1)} - ${hB2.toStringAsFixed(1)} kg'),
-            _tier('Normal Bawah', '${nB1.toStringAsFixed(1)} - ${nB2.toStringAsFixed(1)} kg'),
-            _tier('Limit Bawah', '${lB1.toStringAsFixed(1)} - ${lB2.toStringAsFixed(1)} kg'),
-            _tier('Luar Limit Bawah', 'KEBAWAH dari ${llB1.toStringAsFixed(1)} kg'),
+            _tier(
+              'Harmonis Bawah',
+              '${hB1.toStringAsFixed(1)} - ${hB2.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Normal Bawah',
+              '${nB1.toStringAsFixed(1)} - ${nB2.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Limit Bawah',
+              '${lB1.toStringAsFixed(1)} - ${lB2.toStringAsFixed(1)} kg',
+            ),
+            _tier(
+              'Luar Limit Bawah',
+              'KEBAWAH dari ${llB1.toStringAsFixed(1)} kg',
+            ),
           ],
         ),
       ),
