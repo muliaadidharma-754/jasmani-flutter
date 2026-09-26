@@ -202,7 +202,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.xrb21.jasmani_flutter',
+                userAgentPackageName: 'com.mulia754.jasmani_flutter',
               ),
               if (_rute.length >= 2)
                 PolylineLayer(

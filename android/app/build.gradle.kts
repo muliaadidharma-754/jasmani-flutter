@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.xrb21.jasmani_flutter"
+    namespace = "com.mulia754.jasmani_flutter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.xrb21.jasmani_flutter"
+        applicationId = "com.mulia754.jasmani_flutter"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

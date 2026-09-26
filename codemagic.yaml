@@ -86,7 +86,7 @@ workflows:
         # kalau nanti mau auto-publish ke Play Console juga.
         - google_play
       vars:
-        PACKAGE_NAME: "com.xrb21.jasmani_flutter"
+        PACKAGE_NAME: "com.mulia754.jasmani_flutter"
 
     scripts:
       - name: Get Flutter packages

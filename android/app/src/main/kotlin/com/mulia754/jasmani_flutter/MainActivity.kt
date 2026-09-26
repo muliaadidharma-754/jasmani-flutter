@@ -1,4 +1,4 @@
-package com.xrb21.jasmani_flutter
+package com.mulia754.jasmani_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
