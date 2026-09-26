@@ -15,7 +15,7 @@ workflows:
       cocoapods: default
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.xrb21.jasmaniFlutter
+        bundle_identifier: com.mulia754.jasmaniFlutter
       vars:
         # ID numerik app di App Store Connect (bukan bundle id), isi setelah
         # kamu membuat listing app-nya. Contoh: 6469xxxxxx
